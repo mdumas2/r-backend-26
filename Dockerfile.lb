@@ -1,0 +1,14 @@
+FROM debian:12-slim AS build
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends build-essential ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+WORKDIR /src
+COPY Makefile ./
+COPY src ./src
+RUN make rinha-c-lb
+FROM debian:12-slim
+WORKDIR /app
+COPY --from=build /src/rinha-c-lb /app/rinha-c-lb
+ENV RINHA_LB_ADDR=0.0.0.0:9999 \
+    RINHA_LB_UPSTREAMS=/sockets/api1.sock,/sockets/api2.sock
+ENTRYPOINT ["/app/rinha-c-lb"]
