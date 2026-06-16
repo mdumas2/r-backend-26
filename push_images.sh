@@ -2,7 +2,7 @@
 set -e
 
 # Change this if your dockerhub username is different
-DOCKER_USER="chrisamora"
+DOCKER_USER="mdumas2"
 
 echo "Building API image for linux/amd64..."
 DOCKER_DEFAULT_PLATFORM=linux/amd64 docker build -t ${DOCKER_USER}/r-backend-26-api:latest -f Dockerfile .
