@@ -1,6 +1,6 @@
 services:
   api1:
-    image: mdumas2/r-backend-26-api:latest
+    image: mdumasl/r-backend-26-api:latest
     restart: unless-stopped
     cpuset: "0"
     environment:
@@ -20,7 +20,7 @@ services:
           memory: "160MB"
 
   api2:
-    image: mdumas2/r-backend-26-api:latest
+    image: mdumasl/r-backend-26-api:latest
     restart: unless-stopped
     cpuset: "1"
     environment:
@@ -40,7 +40,7 @@ services:
           memory: "160MB"
 
   lb:
-    image: mdumas2/r-backend-26-lb:latest
+    image: mdumasl/r-backend-26-lb:latest
     restart: unless-stopped
     cpuset: "2,3"
     depends_on:
